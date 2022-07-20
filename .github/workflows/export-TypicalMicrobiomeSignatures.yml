@@ -18,7 +18,7 @@ jobs:
         with:
           repository: waldronlab/TypicalMicrobiomeSignatures
           ref: main
-          token: ${{ env.GITHUB_TOKEN }}
+          token: ${{ env.GITHUB_PAT }}
           path: TypicalMicrobiomeSignatures
 
       - name: Install dependencies
