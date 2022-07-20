@@ -1,0 +1,54 @@
+on:
+  schedule:
+    - cron: "0 22 * * 0" # UTC
+
+name: Export TypicalMicrobiomeSignatures
+
+jobs:
+  export-typicalmicrobiomesignatures:
+    runs-on: ubuntu-latest
+    container: bioconductor/bioconductor_docker:RELEASE_3_15
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+
+      - name: Checkout TypicalMicrobiomeSignatures
+        uses: actions/checkout@v2
+        with:
+          repository: waldronlab/TypicalMicrobiomeSignatures
+          path: TypicalMicrobiomeSignatures
+
+      - name: Install dependencies
+        run: |
+          cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures
+          Rscript -e "devtools::install()"
+
+      - name: Checkout TypicalMicrobiomeSignaturesExports
+        uses: actions/checkout@2
+        with:
+          path: TypicalMicrobiomeSignaturesExports
+
+      - name: Install TypicalMicrobiomeSignaturesExports dependencies
+        run: |
+          cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
+          Rscript -e "devtools::install()"
+
+      - name: Configure Git
+        run: |
+          cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+      - name: Export TypicalMicrobiomeSignatures
+        run: |
+          echo $(date)
+          Rscript $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures/inst/R/write_sigs_to_file.R >> $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
+        timeout-minutes: 10
+
+       - name: Commit Exports
+         run: |
+           cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
+           git add .
+           git commit -m "Weekly export"
+           git push origin main
