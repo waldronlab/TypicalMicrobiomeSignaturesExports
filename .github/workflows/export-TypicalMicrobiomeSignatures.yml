@@ -25,7 +25,7 @@ jobs:
           Rscript -e "devtools::install()"
 
       - name: Checkout TypicalMicrobiomeSignaturesExports
-        uses: actions/checkout@2
+        uses: actions/checkout@v2
         with:
           path: TypicalMicrobiomeSignaturesExports
 
