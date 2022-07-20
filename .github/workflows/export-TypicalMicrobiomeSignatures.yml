@@ -14,7 +14,7 @@ jobs:
     steps:
 
       - name: Checkout TypicalMicrobiomeSignatures
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: waldronlab/TypicalMicrobiomeSignatures
           path: TypicalMicrobiomeSignatures
@@ -25,7 +25,7 @@ jobs:
           Rscript -e "devtools::install()"
 
       - name: Checkout TypicalMicrobiomeSignaturesExports
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: TypicalMicrobiomeSignaturesExports
 
