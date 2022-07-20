@@ -46,9 +46,9 @@ jobs:
           Rscript $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures/inst/R/write_sigs_to_file.R >> $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
         timeout-minutes: 10
 
-       - name: Commit Exports
-         run: |
-           cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
-           git add .
-           git commit -m "Weekly export"
-           git push origin main
+      - name: Commit Exports
+        run: |
+          cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
+          git add .
+          git commit -m "Weekly export"
+          git push origin main
