@@ -23,6 +23,11 @@ jobs:
 
       - name: Install dependencies
         run: |
+          BiocManager::install(c("mia", "curatedMetagenomicData", "bugsigdbr", "ComplexHeatmap", "BiocFileCache", "annotate"))
+        shell: Rscript {0}
+
+      - name: Install TypicalMicrobiomeSignatures 
+        run: |
           cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures
           Rscript -e "devtools::install()"
 
