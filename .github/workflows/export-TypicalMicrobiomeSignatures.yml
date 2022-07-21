@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:RELEASE_3_15
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
+      GITHUB_PAT: ${{ secrets.GH_PAT }}
     steps:
 
       - name: Checkout TypicalMicrobiomeSignatures
