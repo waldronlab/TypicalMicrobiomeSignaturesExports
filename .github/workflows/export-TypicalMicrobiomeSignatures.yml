@@ -45,9 +45,8 @@ jobs:
 
       - name: Export TypicalMicrobiomeSignatures
         run: |
-          ls -lar $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures 
-          Rscript $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures/TypicalMicrobiomeSignatures/inst/R/write_sigs_to_file.R
-          mv *.csv $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports/TypicalMicrobiomeSignaturesExports
+          Rscript $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures/inst/R/write_sigs_to_file.R
+          mv *.csv $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
         timeout-minutes: 10
 
       - name: Commit Exports
