@@ -47,7 +47,7 @@ jobs:
         run: |
           Rscript $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures/inst/R/write_sigs_to_file.R
           mv *.csv $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
-        timeout-minutes: 10
+        timeout-minutes: 30
 
       - name: Commit Exports
         run: |
