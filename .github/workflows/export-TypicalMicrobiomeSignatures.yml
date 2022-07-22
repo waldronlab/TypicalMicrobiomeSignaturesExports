@@ -37,11 +37,6 @@ jobs:
           ref: main
           path: TypicalMicrobiomeSignaturesExports
 
-      - name: Install TypicalMicrobiomeSignaturesExports dependencies
-        run: |
-          cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
-          Rscript -e "devtools::install()"
-
       - name: Configure Git
         run: |
           cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
