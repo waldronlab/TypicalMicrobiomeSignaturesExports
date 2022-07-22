@@ -1,6 +1,7 @@
 on:
   schedule:
     - cron: "0 22 * * 0" # UTC
+  workflow_dispatch:
 
 name: Export TypicalMicrobiomeSignatures
 
@@ -9,29 +10,32 @@ jobs:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:RELEASE_3_15
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PAT: ${{ secrets.GH_PAT }}
     steps:
 
       - name: Checkout TypicalMicrobiomeSignatures
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: waldronlab/TypicalMicrobiomeSignatures
+          ref: main
+          token: ${{ env.GITHUB_PAT }}
           path: TypicalMicrobiomeSignatures
 
       - name: Install dependencies
+        run: |
+          BiocManager::install(c("mia", "curatedMetagenomicData", "bugsigdbr", "ComplexHeatmap", "BiocFileCache", "annotate"))
+        shell: Rscript {0}
+
+      - name: Install TypicalMicrobiomeSignatures 
         run: |
           cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures
           Rscript -e "devtools::install()"
 
       - name: Checkout TypicalMicrobiomeSignaturesExports
-        uses: actions/checkout@2
+        uses: actions/checkout@v3
         with:
+          ref: main
           path: TypicalMicrobiomeSignaturesExports
-
-      - name: Install TypicalMicrobiomeSignaturesExports dependencies
-        run: |
-          cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
-          Rscript -e "devtools::install()"
 
       - name: Configure Git
         run: |
@@ -41,8 +45,8 @@ jobs:
 
       - name: Export TypicalMicrobiomeSignatures
         run: |
-          echo $(date)
-          Rscript $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures/inst/R/write_sigs_to_file.R >> $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
+          Rscript $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures/inst/R/write_sigs_to_file.R
+          mv *.csv $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
         timeout-minutes: 10
 
       - name: Commit Exports
