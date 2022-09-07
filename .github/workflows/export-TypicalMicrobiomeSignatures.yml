@@ -51,5 +51,5 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignaturesExports
           git add .
-          git commit -m "Weekly export"
+          git commit -m "Update exports"
           git push origin main
