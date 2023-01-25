@@ -3,12 +3,13 @@ on:
 
 name: Export TypicalMicrobiomeSignatures
 
+env:
+  GITHUB_PAT: ${{ secrets.wl_pat }}
+
 jobs:
   export-typicalmicrobiomesignatures:
     runs-on: ubuntu-latest
     container: bioconductor/bioconductor_docker:RELEASE_3_15
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
     steps:
 
       - name: Checkout TypicalMicrobiomeSignatures
@@ -21,9 +22,13 @@ jobs:
       - name: Install dependencies
         run: |
           BiocManager::install(c("mia", "curatedMetagenomicData", "bugsigdbr",
-                                 "ComplexHeatmap", "BiocFileCache", "annotate",
-                                 "waldronlab/TypicalMicrobiomeSignatures"))
+                                 "ComplexHeatmap", "BiocFileCache", "annotate"))
         shell: Rscript {0}
+
+      - name: Install TypicalMicrobiomeSignatures
+        run: |
+          cd $GITHUB_WORKSPACE/TypicalMicrobiomeSignatures
+          Rscript -e "devtools::install()"
 
       - name: Checkout TypicalMicrobiomeSignaturesExports
         uses: actions/checkout@v3
