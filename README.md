@@ -9,3 +9,5 @@ Older versions are available at
 
 The files are available under[Creative Commons Attribution 4.0
 International](https://creativecommons.org/licenses/by/4.0/legalcode).
+
+Each file contains a matrix of the prevalence of each signature at gut, skin, anterior nasal, oral cavity, and vagina. Each row is one signature.
