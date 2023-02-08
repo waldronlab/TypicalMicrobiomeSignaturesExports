@@ -3,7 +3,7 @@
 This repository contains exports the signature and prevalence files exported in
 [TypicalMicrobiomeSignatures](https://github.com/waldronlab/TypicalMicrobiomeSignatures).
 The latest release versions are also available on Zenodo at
-[![DOI](https://zenodo.org/badge/D7622129OI/10.5281/zenodo.7622129.svg)](https://doi.org/10.5281/zenodo.7622129).
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7622129.svg)](https://doi.org/10.5281/zenodo.7622129).
 Older versions are available at
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6656514.svg)](https://doi.org/10.5281/zenodo.6656514).
 
