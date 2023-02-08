@@ -36,7 +36,13 @@
         }
     ],
 
-    "license": "Creative Commons Attribution 4.0 International",
+    "license": [
+        {
+            "title" : "Creative Commons Attribution 4.0 International",
+            "string" : "cc-by-4.0",
+            "url" : "https://creativecommons.org/licenses/by/4.0/"
+        }
+    ],
 
     "title": "waldronlab/TypicalMicrobiomeSignaturesExports: v1.0.1",
 
@@ -44,9 +50,9 @@
 
     "publication_date": "2022-10-06",
 
-    "keywords": ["curatedMetagenomicData", "Microbiome", "bugsigdb"],
+    "keywords": ["curatedMetagenomicData", "microbiome", "bugsigdb"],
 
-    "description": "Using the curatedMetagenomicData Biocondutor package (>=3.2.1): we calculated taxa prevalence of healthy control  samples for each body site and at species/genus levels stratified by adult and child.",
+    "description": "Using the curatedMetagenomicData Biocondutor package (>=3.2.1): we calculated taxa prevalence of healthy control samples for each body site and at species/genus levels stratified by adult and child.",
 
     "version": "v1.0.1"
 
